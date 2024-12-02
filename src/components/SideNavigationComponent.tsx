@@ -8,6 +8,19 @@ export const SideNavigationComponent = (): ReactElement => {
         href: "#",
         text: "Eric's Toolbox",
       }}
+      items={[
+        {
+          type: "section",
+          text: "Advent of Code 2024",
+          items: [
+            {
+              type: "link",
+              text: "Day 1",
+              href: "#/advent-of-code-2024/day-1",
+            },
+          ],
+        },
+      ]}
     />
   );
 };

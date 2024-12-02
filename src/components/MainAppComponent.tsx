@@ -1,34 +1,21 @@
-import { AppLayout, BreadcrumbGroup } from "@cloudscape-design/components";
-import I18nProvider from "@cloudscape-design/components/i18n";
-import messages from "@cloudscape-design/components/i18n/messages/all.en";
-import { useState } from "react";
+import {
+  Container,
+  ContentLayout,
+  Header,
+} from "@cloudscape-design/components";
+import { ReactElement } from "react";
+import { ToggleModeButtonComponent } from "./ToggleModeButtonComponent";
+import CustomAppLayout from "../layouts/CustomAppLayout";
 
-import "../styles/base.scss";
-import { ModeProvider } from "../providers/ModeProvider";
-import { SideNavigationComponent } from "./SideNavigationComponent";
-import { MainAppContentComponent } from "./MainAppContentComponent";
-
-function MainAppComponent() {
-  const [navigationOpen, setNavigationOpen] = useState(false);
-
+export const MainAppComponent = (): ReactElement => {
   return (
-    <I18nProvider locale="en" messages={[messages]}>
-      <ModeProvider>
-        <AppLayout
-          toolsHide={true}
-          breadcrumbs={
-            <BreadcrumbGroup
-              items={[{ text: "Eric's Toolbox", href: "/hello" }]}
-            />
-          }
-          navigationOpen={navigationOpen}
-          onNavigationChange={(event) => setNavigationOpen(event.detail.open)}
-          navigation={<SideNavigationComponent />}
-          content={<MainAppContentComponent />}
-        />
-      </ModeProvider>
-    </I18nProvider>
+    <CustomAppLayout breadcrumbs={[]}>
+      <ContentLayout header={<Header>Eric's Toolbox</Header>}>
+        <Container>
+          <p>Eric's Toolbox</p>
+          <ToggleModeButtonComponent>Toggle Mode</ToggleModeButtonComponent>
+        </Container>
+      </ContentLayout>
+    </CustomAppLayout>
   );
-}
-
-export default MainAppComponent;
+};
