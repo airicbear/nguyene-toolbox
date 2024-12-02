@@ -22,6 +22,12 @@ export const AdventOfCode2024Day1Component = (): ReactElement => {
   >([]);
   const [partOneDistanceList, setPartOneDistanceList] = useState<number[]>([]);
   const [partOneOutput, setPartOneOutput] = useState(0);
+  const [partTwoSimilarityScoresMap, setPartTwoSimilarityScoresMap] = useState<
+    number[]
+  >([]);
+  const [partTwoSimilarityScoresList, setPartTwoSimilarityScoresList] =
+    useState<number[]>([]);
+  const [partTwoSimilarityScore, setPartTwoSimilarityScore] = useState(0);
 
   return (
     <CustomAppLayout
@@ -58,6 +64,38 @@ export const AdventOfCode2024Day1Component = (): ReactElement => {
               const distanceSum = arraySum(distances);
 
               setPartOneOutput(distanceSum);
+
+              const list1Set = new Set(list1);
+              const similarityScoreMap: { [n: number]: number } = {};
+
+              list1Set.forEach((n) => {
+                similarityScoreMap[n] = list2.filter((n2) => n2 === n).length;
+              });
+
+              const similarityScoreNumberSet = Object.keys(
+                similarityScoreMap
+              ).map((n) => parseInt(n, 10));
+              const similarityScoreNumberSetMapping =
+                Object.values(similarityScoreMap);
+
+              setPartTwoSimilarityScoresMap(
+                mergeArrays(
+                  similarityScoreNumberSet,
+                  similarityScoreNumberSetMapping
+                )
+              );
+
+              console.log(similarityScoreNumberSetMapping);
+
+              const similarityScoreList = list1.map((n) => {
+                return n * similarityScoreMap[n];
+              });
+
+              setPartTwoSimilarityScoresList(similarityScoreList);
+
+              const similarityScore = arraySum(similarityScoreList);
+
+              setPartTwoSimilarityScore(similarityScore);
             }}
           />
           <Header variant="h3">Unsorted Lists</Header>
@@ -66,8 +104,14 @@ export const AdventOfCode2024Day1Component = (): ReactElement => {
           <ColumnLayout columns={2}>{partOneCombinedListSorted}</ColumnLayout>
           <Header variant="h3">Distance List</Header>
           <ColumnLayout columns={1}>{partOneDistanceList}</ColumnLayout>
-          <Header variant="h3">Output</Header>
+          <Header variant="h3">Total distance between two lists</Header>
           <p>{partOneOutput}</p>
+          <Header variant="h3">Similarity Scores Mapping</Header>
+          <ColumnLayout columns={2}>{partTwoSimilarityScoresMap}</ColumnLayout>
+          <Header variant="h3">Similarity Scores List</Header>
+          <ColumnLayout columns={1}>{partTwoSimilarityScoresList}</ColumnLayout>
+          <Header variant="h3">Similarity Score</Header>
+          <p>{partTwoSimilarityScore}</p>
         </Container>
       </ContentLayout>
     </CustomAppLayout>

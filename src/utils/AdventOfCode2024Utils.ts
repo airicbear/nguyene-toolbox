@@ -26,5 +26,5 @@ export const getDistances = (list1: number[], list2: number[]): number[] => {
 };
 
 export const arraySum = (array: number[]): number => {
-  return array.reduce((a, b) => a + b);
+  return array.reduce((a, b) => a + b, 0);
 };
