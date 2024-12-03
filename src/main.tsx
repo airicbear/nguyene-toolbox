@@ -10,6 +10,10 @@ createRoot(document.getElementById("root")!).render(
       <Routes>
         <Route path="/" element={<MainAppComponent />} />
         <Route
+          path="/advent-of-code-2024"
+          element={<AdventOfCode2024Day1Component />}
+        />
+        <Route
           path="/advent-of-code-2024/day-1"
           element={<AdventOfCode2024Day1Component />}
         />
