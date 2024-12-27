@@ -11,7 +11,7 @@ export const readWhitespaceDelimitedInput = (
 
   const inputArray = input.split("\n");
   inputArray.forEach((item) => {
-    const [n1, n2] = item.split(/s+/);
+    const [n1, n2] = item.split(/\s+/);
 
     result.list1.push(parseInt(n1, 10));
     result.list2.push(parseInt(n2, 10));
