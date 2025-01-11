@@ -1,15 +1,31 @@
 # Eric's Toolbox
 
-### Setup
+Eric's Toolbox is a website that serves as a general-purpose set of utilities.
 
-Download Node Package Manager (npm) using https://docs.npmjs.com/downloading-and-installing-node-js-and-npm and run
-
-```
-npm install
-```
-
-### Run development server
+## Development
 
 ```
-npm run dev
+docker build -t nguyene-toolbox-dev --target development .
+```
+
+```
+docker run -p 5173:5173 nguyene-toolbox-dev
+```
+
+```
+curl http://localhost:5173
+```
+
+## Production
+
+```
+docker build -t nguyene-toolbox .
+```
+
+```
+docker run -p 80:80 nguyene-toolbox-dev
+```
+
+```
+curl http://localhost:80
 ```
